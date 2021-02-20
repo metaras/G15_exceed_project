@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Patrick Hand');
+@import url('https://fonts.googleapis.com/css2?family=Julius Sans One');
+@import url('https://fonts.googleapis.com/css2?family=Palanquin');
+@import url('https://fonts.googleapis.com/css2?family=Nanum Gothic Coding');
+
+* {                                             /* font */
+    font-family: Nanum Gothic Coding;
+}
+
+body {                                          /* สีพื้นหลัง */
+    background-color: #e9d5ae;
+}
+
+
+#TEXT {                                         /* ข้อความ "SELECT LOCATION" */
+    padding-top: 120px;
+    text-align: center;
+    font-size: 500%;
+}
+
+
+#TEXT_BUTTON_LOCATION {                         /* ข้อความ "LOCATION" */
+    font-size: 200%;
+    text-align: center;
+}
+#BUTTON_LOCATION {                              /* ปุ่ม --- SELECT --- */
+    font-size: 85%;
+    text-align: center;
+}
+
+
+#BUTTON {                                       /* ปุ่ม SUBMIT */
+    padding-top: 45px;
+    text-align: center;
+}
+#BUTTON_SUBMIT {                                /* ข้อความ "SUBMIT" */
+    background-color: #dbdada;
+    font-size: 85%;
+    border-radius: 5px;
+}
+#BUTTON_SUBMIT:hover {                          /* ข้อความ "SUBMIT" ขณะเม้าส์ชี้ */
+    background-color: #e3ab9b;
+    color: #ffffff;
+}

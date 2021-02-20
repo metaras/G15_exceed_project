@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum Gothic Coding');
+
+* {                                             /* font */
+    font-family: Nanum Gothic Coding;
+}
+
+body {                                          /* สีพื้นหลัง */
+    background-color: #e9d5ae;
+}
+
+#TEXT {                                         /* ข้อความ "LOCATION" */
+    text-align: center;
+    font-size: 300%;
+}
+
+#UNDER_TITLE {                                  /* ข้อความ "< YESTERDAY >" */
+    text-align: center;
+    font-size: 200%;
+}
+
+.BUTTON {                                       /* ทำปุ่ม SELECT_LOCA , YESTERDAY ให้เป็นแนวนอน */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+#BUTTON_S {                                     /* ปุ่ม SELECT_LOCA */
+    margin-top: 30px;
+    margin-right: 350px;
+}
+#BUTTON_T {                                     /* ปุ่ม TODAY */
+    margin-top: 30px;
+    margin-left: 350px;
+}
+.BUTTON_UNDER {                                /* ขนาด + สีปุ่ม */
+    background-color: #dbdada;
+    font-size: 150%;
+    border-radius: 5px;
+}
+.BUTTON_UNDER:hover {                          /* สีปุ่มขณะเม้าส์ชี้ */
+    background-color: #e3ab9b;
+    color: #ffffff;
+}
+
+#barchart {
+    margin-top: 50px;
+    margin-left: 50px;
+}
+
+#piechart {
+    margin-top: 10px;
+    /*margin-left: 50px;*/
+    font-size: 200%;
+}
+
+.graph {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
