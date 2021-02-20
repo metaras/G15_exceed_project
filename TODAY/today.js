@@ -36,12 +36,9 @@ function block_col(url)
     .then((data) => {
             people = data.people
             dens = data.density
-<<<<<<< HEAD
             test(block1,dens,1);
-=======
             // test_d.appendChild(makeNewNode(dens))
-            test(block1,people,1);
->>>>>>> 07f8be2d5a7332541e923072a1f39b6b7ed07e07
+            test(block1,dens,1);
             test(block2,people,2);
             M2.innerText = dens;
             MIN.innerText = people;
