@@ -2,6 +2,8 @@
 let ln =document.getElementById("location_name");
 var location_name = sessionStorage.getItem("location_name");
 ln.innerText = location_name;
+let M2 =document.getElementById("peopleM2");
+let MIN =document.getElementById("peopleMIN");
 
 
 let block1 = document.getElementById("BLOCKS_DENSITY_M2");
@@ -25,7 +27,7 @@ function makeNewNode(text) {
     return newNode;
   }
 
-test_d = document.getElementById("test")
+// test_d = document.getElementById("test")
 
 function block_col(url)
 {
@@ -34,9 +36,11 @@ function block_col(url)
     .then((data) => {
             people = data.people
             dens = data.density
-            test_d.appendChild(makeNewNode(dens))
+            // test_d.appendChild(makeNewNode(dens))
             test(block1,people,1);
             test(block2,people,2);
+            M2.innerText = dens;
+            MIN.innerText = people;
         })
     .catch((error) => console.log("error", error)); 
 }
