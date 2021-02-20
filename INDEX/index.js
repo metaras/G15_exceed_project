@@ -7,17 +7,16 @@ form.addEventListener("submit",(event)=>{              // กด submit ทำ e
     let sel = document.getElementById("BUTTON_LOCATION");       // สิ่งที่อยู่ใน select ของ BUTTON LOCATION
     let loc = sel.options[sel.selectedIndex].text;                       // ระบุ select
     // sel = select , loc = location
-
     if(loc==="LOCATION A") {
-        var location_name = "A";
-        sessionStorage.setItem("location_name", location_name);
-        location.href = "../TODAY/today.html";
-    }
-    else if(loc==="LOCATION B") {
-        var location_name = "B";
-        sessionStorage.setItem("location_name", location_name);
-        location.href = "../TODAY/today.html";
-    }
+      var location_name = "A";
+      sessionStorage.setItem("location_name", location_name);
+      location.href = "../TODAY/today.html";
+  }
+  else if(loc==="LOCATION B") {
+      var location_name = "B";
+      sessionStorage.setItem("location_name", location_name);
+      location.href = "../TODAY/today.html";
+  }
 });
 
 function makeNewNode(text) {
@@ -32,13 +31,10 @@ setInterval (() => {
     fetch("http://158.108.182.17:2255/get_dens_A")
         .then((response) => response.json())
         .then((data) => {
-        //     datas.forEach(data => {
-                people = data.people
+                people = data.people //  จำนวนคนในห้าง
                 hr = data.hour
                 min = data.minute
-                dens = data.density
-                // getBarData()
-                // test_bar.appendChild(makeNewNode(dens))
+                dens = data.density // จำนวนคน / 10
             })
         .catch((error) => console.log("error", error));
 },5000);
@@ -50,8 +46,8 @@ function getBarData()
       .then((response) => response.json())
       .then((data) => {
           for (var i = 10; i <= 21; i++) {
-            in_yes = data[i].in
-            out_yes = data[i].out
+            in_yes = data[i].in  //จำนวนคนเข้า
+            out_yes = data[i].out  // จำนวนคนออก
             // time_range = each.time_range
             // call bar graph function
           }
@@ -64,53 +60,8 @@ function getPieData()
     fetch("http://158.108.182.17:2255/get_temp_A")
       .then((response) => response.json())
       .then((data) => {
-            pass = data.pass_yesterday
-            not_pass = data.not_pass_yesterday
+            pass = data.pass_yesterday // จำนวนคนผ่าน
+            not_pass = data.not_pass_yesterday // จำนวนคนไม่ผ่าน
             // call pie chart function
       });
 }
-
-// function getLineData()
-// {
-//     fetch("https://exceed15.cpsk-club.xyz", {
-//         method: "GET",
-//         headers: { "Content-Type": "application/json" },
-//       })
-//       .then((data) => data.json())
-//       .then((datas) => {
-//         datas.forEach((each) => {
-//             amount = each.people
-//             real_time = each.real_time
-//         });
-//     })
-// }
-
-// function getStatus()
-// {
-//     fetch("https://exceed15.cpsk-club.xyz", {
-//         method: "GET",
-//         headers: { "Content-Type": "application/json" },
-//       })
-//       .then((data) => data.json())
-//       .then((datas) => {
-//         datas.forEach((each) => {
-//             amount = each.pass
-//             real_time = each.not_pass
-//         });
-//     })
-// }
-
-// function getDensity()
-// {
-//     fetch("https://exceed15.cpsk-club.xyz", {
-//         method: "GET",
-//         headers: { "Content-Type": "application/json" },
-//       })
-//       .then((data) => data.json())
-//       .then((datas) => {
-//         datas.forEach((each) => {
-//             amount = each.pass
-//             real_time = each.not_pass
-//         });
-//     })
-// }

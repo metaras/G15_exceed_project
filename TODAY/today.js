@@ -7,20 +7,6 @@ ln.innerText = location_name;
 let block1 = document.getElementById("BLOCKS_DENSITY_M2");
 let block2 = document.getElementById("BLOCKS_DENSITY_MIN");
 
-function block_col(url)
-{
-    fetch(url)
-    .then((response) => response.json())
-    .then((data) => {
-            people = data.people
-            dens = data.density
-            test(block1,dens,1);
-            test(block2,people,2);
-        })
-    .catch((error) => console.log("error", error));
-    
-}
-
 setInterval (() => {
     if (location_name==="A"){
         url = "http://158.108.182.17:2255/get_dens_A"
@@ -33,6 +19,27 @@ setInterval (() => {
     
 },1000);
 
+function makeNewNode(text) {
+    newNode = document.createElement("p");
+    newNode.innerText = text;
+    return newNode;
+  }
+
+test_d = document.getElementById("test")
+
+function block_col(url)
+{
+    fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+            people = data.people
+            dens = data.density
+            test_d.appendChild(makeNewNode(dens))
+            test(block1,people,1);
+            test(block2,people,2);
+        })
+    .catch((error) => console.log("error", error)); 
+}
 
 // เปลี่ยนสี blocks
 function test(block,checkQuantity,checkBlock){
