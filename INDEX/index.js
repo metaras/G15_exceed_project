@@ -37,22 +37,24 @@ setInterval (() => {
                 dens = data.density // จำนวนคน / 10
             })
         .catch((error) => console.log("error", error));
+
 },5000);
 
+
 // ดึงข้อมูลของ bar graph
-function getBarData()
-{
-    fetch("http://158.108.182.17:2255/get_time_A_yesterday")
-      .then((response) => response.json())
-      .then((data) => {
-          for (var i = 10; i <= 21; i++) {
-            in_yes = data[i].in  //จำนวนคนเข้า
-            out_yes = data[i].out  // จำนวนคนออก
-            // time_range = each.time_range
-            // call bar graph function
-          }
-        });
-}
+// function getBarData()
+// {
+//     fetch("http://158.108.182.17:2255/get_time_A_yesterday")
+//       .then((response) => response.json())
+//       .then((data) => {
+//           for (var i = 10; i <= 21; i++) {
+//             in_yes = data[i].in  //จำนวนคนเข้า
+//             out_yes = data[i].out  // จำนวนคนออก
+//             // time_range = each.time_range
+//             // call bar graph function
+//           }
+//         });
+// }
 
 // ดึง ข้อมูลของ piechart
 function getPieData()

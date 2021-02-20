@@ -61,52 +61,100 @@ function test(block,checkQuantity,checkBlock){
 test(block1,0,1);
 test(block2,0,2);
 
-window.onload = function () {
-    CanvasJS.addColorSet("brown",
-    [//colorSet Array
-    "#795321",
-    ]);
+// window.onload = function () {
+//     CanvasJS.addColorSet("brown",
+//     [//colorSet Array
+//     "#795321",
+//     ]);
 
-var dps = []; // dataPoints
-var chart = new CanvasJS.Chart("chartContainer", {
-    // width: 700, height: 350,
-    colorSet: "brown",
-    backgroundColor: "#fdfaf2",
-    title :{
-        text: "Real-Time Chart",
-        fontFamily: "Nanum Gothic Coding"
-    },
-    data: [{
-        type: "line",
-        dataPoints: dps
-    }]
+// var dps = []; // dataPoints
+// var chart = new CanvasJS.Chart("chartContainer", {
+//     // width: 700, height: 350,
+//     colorSet: "brown",
+//     backgroundColor: "#fdfaf2",
+//     title :{
+//         text: "Real-Time Chart",
+//         fontFamily: "Nanum Gothic Coding"
+//     },
+//     data: [{
+//         type: "line",
+//         dataPoints: dps
+//     }]
+// });
+// fetch("http://158.108.182.17:2255/get_dens_A", {
+//         method: "GET",
+//         headers: { "Content-Type": "application/json" },
+//       })
+//       .then((data) => data.json())
+//       .then((datas) => {
+//         datas.forEach((each) => {
+//             dps.push({x:each.people, y:each.hour})
+//         });
+//     })
+
+// var updateInterval = 1000;
+// var dataLength = 20; // number of dataPoints visible at any point
+
+// var updateChart = function (count) {
+
+//     count = count || 1;
+//     // Data to read from in here.
+//     if (dps.length > dataLength) {
+//         dps.shift();
+//     }
+
+//     chart.render();
+// };
+
+// updateChart(dataLength);
+// setInterval(function(){updateChart()}, updateInterval);
+
+// }
+
+// load current chart package
+google.charts.load("current", {
+    packages: ["corechart", "line"]
 });
-fetch("https://exceed15.cpsk-club.xyz", {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-      })
-      .then((data) => data.json())
-      .then((datas) => {
-        datas.forEach((each) => {
-            dps.push({x:each.people,y:each.real_time})
-        });
-    })
-
-var updateInterval = 1000;
-var dataLength = 20; // number of dataPoints visible at any point
-
-var updateChart = function (count) {
-
-    count = count || 1;
-    // Data to read from in here.
-    if (dps.length > dataLength) {
-        dps.shift();
-    }
-
-    chart.render();
-};
-
-updateChart(dataLength);
-setInterval(function(){updateChart()}, updateInterval);
-
+// set callback function when api loaded
+google.charts.setOnLoadCallback(drawChart);
+function drawChart() {
+    // create data object with default value
+    let data = google.visualization.arrayToDataTable([
+        ["Time", "People"],
+        [0, 0]
+    ]);
+    // create options object with titles, colors, etc.
+    let options = {
+        title: "Population / Time",
+        hAxis: {
+            title: "Time"
+        },
+        vAxis: {
+            title: "Number of People"
+        }
+    };
+    // draw chart on load
+    let chart = new google.visualization.LineChart(
+        document.getElementById("chart_div")
+    );
+    chart.draw(data, options);
+    // interval for adding new data every 250ms
+    let index = 0;
+    setInterval(function() {
+        // instead of this random, you can make an ajax call for the current cpu usage or what ever data you want to display
+        // let random = Math.random() * 30 + 20;
+        fetch("http://158.108.182.17:2255/get_temp_A", {
+            method: "GET",
+            headers: { "Content-Type": "application/json" },
+        })
+            .then((response) => response.json())
+            .then((data) => {
+            ppp = data.people
+            hhh = data.hour
+            mmm = data.minute
+            });
+        data.addRow([index, people]); // Right now cannot display x-axis as current time in string.
+        chart.draw(data, options);
+        index++;
+    }, 5000);
 }

@@ -1,86 +1,126 @@
 // ลิ้ง location
-let ln =document.getElementById("location_name");
+let ln = document.getElementById("location_name");
 var location_name = sessionStorage.getItem("location_name");
 ln.innerText = location_name;
 
-
-window.onload = function(){
-    var pass = null
-    var not_pass = null
-    var in_avg = 0
-    var out_avg = 0
-    var time_range = 
-    google.charts.load('current', {'packages':['corechart']});
-    google.charts.setOnLoadCallback(drawChart1);
-    fetch("https://exceed15.cpsk-club.xyz", {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-      })
-      .then((data) => data.json())
-      .then((datas) => {
-        datas.forEach((each) => {
-            in_avg = each.in_avg
-            out_avg = each.out_avg
-            time_range = each.time_range
-            // call bar graph function
-        });
+function getBarData() {
+  fetch("http://158.108.182.17:2255/get_time_A_yesterday")
+    .then((response) => response.json())
+    .then((data) => {
+      for (var i = 10; i <= 21; i++) {
+        in_yes = data[i].in  //จำนวนคนเข้า
+        out_yes = data[i].out  // จำนวนคนออก
+      }
     });
-    function drawChart1() {
+}
 
-    var data1 = google.visualization.arrayToDataTable([
-    ['Numbers', 'Category', { role: 'style' }],
-    ['A', in_avg, '#5382bc'],
-    ['B', out_avg, '#5382bc'],
-    ['C', time_range, '#5382bc']
-    ]);
+window.onload = function () {
+  google.charts.load('current', { 'packages': ['corechart'] });
 
-    var options1 = {
-    legend: { position: 'bottom', textStyle: {fontSize: 16}, },
-    backgroundColor: "#faf3e3",
-    title: 'Bar Chart',
-    fontSize: 30,
-    fontFamily: "Nanum Gothic Coding",
-    colors: ['#5382bc']
-    };
+// ---------------------------------- Bar Chart.
 
-    var chart1 = new google.visualization.BarChart(document.getElementById("barchart"))
+  var box1 = new Array();
+  var box2 = new Array();
+  var check = 0
+  fetch("http://158.108.182.17:2255/get_time_A_yesterday", {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      for (var i = 10; i <= 21; i++) { //*********************** cannot read data ************************* */
+        in_yes = data[i].in  //จำนวนคนเข้า
+        out_yes = data[i].out  // จำนวนคนออก
+        // box1.push(in_yes)
+        // box2.push(out_yes)
+        check = in_yes
+      }
+    });
 
-    chart1.draw(data1, options1);
+    var chart = new CanvasJS.Chart("chartContainer", {
+      animationEnabled: true,
+      title:{
+        text: "Yesterday"
+      },	
+      axisY: {
+        title: "Number of people",
+        titleFontColor: "#000",
+        lineColor: "#000",
+        labelFontColor: "#000",
+        tickColor: "#000"
+      },
+      toolTip: {
+        shared: true
+      },
+      legend: {
+        cursor:"pointer",
+        itemclick: toggleDataSeries
+      },
+      data: [{
+        type: "column",
+        name: "Entry",
+        legendText: "Entry",
+        showInLegend: true, 
+        dataPoints:[
+          { label: "10:00-13:00", y: 50 },//********************* Enter number of entering people *************************** */
+          { label: "13:00-16:00", y: check },
+          { label: "16:00-19:00", y: 25 },
+          { label: "19:00-22:00", y: 20 }
+        ]
+      },
+      {
+        type: "column",	
+        name: "Exit",
+        legendText: "Exit",
+        axisYType: "secondary",
+        showInLegend: true,
+        dataPoints:[
+          { label: "10:00-13:00", y: 10 },//********************* enter number of exiting people *************************** */
+          { label: "13:00-16:00", y: 12 },
+          { label: "16:00-19:00", y: 31 },
+          { label: "19:00-22:00", y: 40 }
+        ]
+      }]
+    });
+    chart.render();
+    function toggleDataSeries(e) {
+      if (typeof(e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+        e.dataSeries.visible = false;
+      }
+      else {
+        e.dataSeries.visible = true;
+      }
+      chart.render();
     }
-    
-    google.charts.load('visualization', '1', {'packages':['corechart']});
-    google.charts.setOnLoadCallback(drawChart2);
-    fetch("http://158.108.182.17:2255/get_temp_A", {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-      })
-      .then((response) => response.json())
-      .then((data) => {
-            pass = data.pass
-            not_pass = data.not_pass
-            // call pie chart function
-      });
+// ---------------------------------- Pie Chart.
 
-    function drawChart2() {
+  google.charts.setOnLoadCallback(drawChart2);
+  fetch("http://158.108.182.17:2255/get_temp_A", {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      pass = data.pass
+      not_pass = data.not_pass
+    });
 
+  function drawChart2() {
     var data2 = google.visualization.arrayToDataTable([
-    ['Category', 'Percentage'],
-    ['PASS', pass],
-    ['NOT PASS', not_pass]
+      ['Category', 'Percentage'],
+      ['PASS', pass],
+      ['NOT PASS', not_pass]
     ]);
-
     var options2 = {
-    // pieSliceBorderColor: '#000',
-    legend: { position: 'bottom', textStyle: {fontSize: 25}, },
-    backgroundColor: "#e9d5ae",
-    title: 'Percentage',
-    fontSize: 30,
-    fontName: 'Nanum Gothic Coding',
-    slices: [{color: '#4dd77f',offset:0},{color: '#f62f2f',offset:0.1}]
+      // pieSliceBorderColor: '#fff',
+      legend: { position: 'bottom', textStyle: { fontSize: 25 }, },
+      backgroundColor: "#e9d5ae",
+      title: 'Percentage',
+      fontSize: 30,
+      fontName: 'Nanum Gothic Coding',
+      slices: [{ color: '#4dd77f', offset: 0 }, { color: '#f62f2f', offset: 0.1 }]
     };
-
     var chart2 = new google.visualization.PieChart(document.getElementById('piechart'));
-
     chart2.draw(data2, options2);
-    }
+  }
 }
