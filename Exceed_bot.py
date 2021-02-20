@@ -37,10 +37,12 @@ async def on_message(message):
     if message.author == client.user:
         return
     if message.content == '!help':
-        embed = discord.Embed(title = "[Current Status]",color = discord.Colour.green())
+
+        embed1 = discord.Embed(title = "ท่านผู้เจริญ Command:",color = discord.Colour.gold())
         #embed.set_image(url = 'https://tenor.com/view/keqing-genshin-impact-genshin-impact-god-gif-19879828')
         #embed.set_thumbnail(url='https://upload-os-bbs.mihoyo.com/upload/2020/01/23/1015158/c870945193b1b3eebe2cb1beb53ccba1_3336201567560481242.gif')
         #embed.add_field(name='',value ='--->',inline=False)
+        embed = discord.Embed(title = "[Present Command]",color = discord.Colour.green())
         embed.add_field(name='"status bar"',value = "Description: return the current bar graph of people inside mall A and mall B by time",inline=True)
         embed.add_field(name='"status in&out A bar"',value = "Description: return bar graph of comparison of people coming in&out of mall A",inline=True)
         embed.add_field(name='"status in&out B bar"',value = "Description: return bar graph of comparison of people coming in&out of mall B",inline=True)
@@ -53,7 +55,7 @@ async def on_message(message):
         embed.add_field(name='"status compare visited"',value = "Description: return pie graph of comparison of people visited mall A and mall B",inline=True)
         
         #embed.add_field(name='',value ='--->')
-        embed2 = discord.Embed(title = "[Previous Status]",color = discord.Colour.red())
+        embed2 = discord.Embed(title = "[Previous Command]",color = discord.Colour.red())
         embed2.add_field(name='"prev bar"',value = "Description: return yesterday bar graph of people inside mall A and mall B by time",inline=True)
         embed2.add_field(name='"prev in&out A bar"',value = "Description: return yesterday bar graph of comparison of people coming in&out of mall A",inline=True)
         embed2.add_field(name='"prev in&out B bar"',value = "Description: return yesterday bar graph of comparison of people coming in&out of mall B",inline=True)
@@ -65,13 +67,14 @@ async def on_message(message):
         embed2.add_field(name='"prev compare visited"',value = "Description: return yesterday pie graph of comparison of people visited mall A and mall B",inline=True)
 
         #embed.add_field(name='status',value = "Description: return the current status of people inside the mall\n Usage:   status (A/B)",inline=False)
-        embed3 = discord.Embed(title = "[Prediction Status]",color = discord.Colour.blue())
+        embed3 = discord.Embed(title = "[Prediction Command]",color = discord.Colour.blue())
         embed3.add_field(name='"predict bar"',value = "Description: return prediction bar graph of people inside mall A and mall B by time",inline=True)
         embed3.add_field(name='"predict in&out A bar"',value = "Description: return prediction bar graph of comparison of people coming in&out of mall A",inline=True)
         embed3.add_field(name='"predict in&out B bar"',value = "Description: return prediction bar graph of comparison of people coming in&out of mall B",inline=True)
         embed3.add_field(name='"predict line"',value = "Description: return prediction line graph of people inside mall A and mall B by time",inline=True)
         embed3.add_field(name='"predict in&out A line"',value = "Description: return prediction line graph of comparison of people coming in&out of mall A",inline=True)
         embed3.add_field(name='"predict in&out B line"',value = "Description: return prediction line graph of comparison of people coming in&out of mall B",inline=True)
+        await message.channel.send(embed = embed1)
         await message.channel.send(embed = embed)
         await message.channel.send(embed = embed2)
         await message.channel.send(embed = embed3)
@@ -1424,4 +1427,4 @@ async def on_message(message):
 #x = collection.find()
 #print(x[1]['1/2/3'])
 #collection.insert_one({'insert_test':'hi'})
-client.run('ODExMTIzMDIxNjQ1MDg2Nzcw.YCtnLg.wV459_oeMnq2bh0IKGLt4qvQIps')
+client.run('')
