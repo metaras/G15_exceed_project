@@ -34,7 +34,6 @@ function block_col(url)
     .then((data) => {
             people = data.people
             dens = data.density
-            // test_d.appendChild(makeNewNode(dens))
             test(block1,dens,1);
             test(block2,people,2);
         })
@@ -43,10 +42,8 @@ function block_col(url)
 
 // เปลี่ยนสี blocks
 function test(block,checkQuantity,checkBlock){
-    // block.removeChild(makeNewNode(checkQuantity))
     if ( (checkQuantity<=1 && checkBlock===1 ) || (checkQuantity<=49 && checkBlock===2) ) {
         block.style.backgroundColor = "#4dd77f";
-        // block.appendChild(makeNewNode(checkQuantity))
     }
     else if ((checkQuantity<=3.6 && checkBlock===1 ) || (checkQuantity<=100 && checkBlock===2)) {
         block.style.backgroundColor = "#f68b39";
@@ -54,7 +51,6 @@ function test(block,checkQuantity,checkBlock){
     else {
         block.style.backgroundColor = "#f62f2f";
     }
-    // block.innerText(checkQuantity)
 }
 test(block1,0,1);
 test(block2,0,2);
