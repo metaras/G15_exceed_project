@@ -54,3 +54,53 @@ function test(block,checkQuantity,checkBlock){
 }
 test(block1,0,1);
 test(block2,0,2);
+
+window.onload = function () {
+    CanvasJS.addColorSet("brown",
+    [//colorSet Array
+    "#795321",
+    ]);
+
+var dps = []; // dataPoints
+var chart = new CanvasJS.Chart("chartContainer", {
+    // width: 700, height: 350,
+    colorSet: "brown",
+    backgroundColor: "#fdfaf2",
+    title :{
+        text: "Real-Time Chart",
+        fontFamily: "Nanum Gothic Coding"
+    },
+    data: [{
+        type: "line",
+        dataPoints: dps
+    }]
+});
+fetch("https://exceed15.cpsk-club.xyz", {
+        method: "GET",
+        headers: { "Content-Type": "application/json" },
+      })
+      .then((data) => data.json())
+      .then((datas) => {
+        datas.forEach((each) => {
+            dps.push({x:each.people,y:each.real_time})
+        });
+    })
+
+var updateInterval = 1000;
+var dataLength = 20; // number of dataPoints visible at any point
+
+var updateChart = function (count) {
+
+    count = count || 1;
+    // Data to read from in here.
+    if (dps.length > dataLength) {
+        dps.shift();
+    }
+
+    chart.render();
+};
+
+updateChart(dataLength);
+setInterval(function(){updateChart()}, updateInterval);
+
+}
