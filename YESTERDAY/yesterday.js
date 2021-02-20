@@ -43,7 +43,7 @@ window.onload = function(){
     colors: ['#5382bc']
     };
 
-    var chart1 = new google.visualization.BarChart(document.getElementById("abc"))
+    var chart1 = new google.visualization.BarChart(document.getElementById("barchart"))
 
     chart1.draw(data1, options1);
     }
