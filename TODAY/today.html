@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>today</title>
+        <link rel="stylesheet" href="today.css">
+        <script type="text/javascript" loading="lazy" src="https://www.gstatic.com/charts/loader.js"></script>
+
+    </head>
+
+    <body>
+    <h1 id="TEXT"> LOCATION <p style="display:inline;" id="location_name"></p> </h1>                                                 <!-- ข้อความ LOCATION -->
+        <p id="UNDER_TITLE"> <&#8196;&#8196;&#8196; TODAY &#8196;&#8196;&#8196;> </p>   <!-- ข้อความ < TODAY > -->
+
+        <div class="G_AND_B">
+
+            
+            <div id="chart_div" class="G_AND_B" style="width: 700px; height: 350px;"></div>
+
+
+            <!-- <div id="chartContainer" class="G_AND_B" style="width: 700px; height: 350px;"></div> -->
+            <!-- <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script> -->
+
+<!--แสดงสีเปลี่ยนตามจำนวน-->
+            <div class="B">
+                <div id="BLOCKS_DENSITY_M2" class="REAL_TIME_BLOCKS">
+                    <p> <p style="display:inline;" id="peopleM2"></p> (PEOPLE / 10 m<sup>2</sup>)</p>
+                </div>
+                <div id="BLOCKS_DENSITY_MIN" class="REAL_TIME_BLOCKS">
+                    <p> <p style="display:inline;" id="peopleMIN"></p> PEOPLE</p>
+                </div>
+
+<!--text ขยายความ-->
+                <div class="COLOR_HINT">
+                    <div class="COLOR_AND_TEXT">
+                        <p id="C1" class="CIRCLE"> &#8196; </p>
+                        <p>&#8196;Normal&#8196;</p>
+                    </div>
+                    <div class="COLOR_AND_TEXT">
+                        <p id="C2" class="CIRCLE"> &#8196; </p>
+                        <p>&#8196;Crowded&#8196;</p>
+                    </div>
+                    <div class="COLOR_AND_TEXT">
+                        <p id="C3" class="CIRCLE"> &#8196; </p>
+                        <p>&#8196;Overcrowded&#8196;</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="BUTTON">                                                            <!-- ปุ่ม SELECT_LOCA , YESTERDAY -->
+            <div id="BUTTON_S">                                                         <!-- ปุ่ม SELECT_LOCA -->
+                <a href="../INDEX/index.html">
+                    <input id="BUTTON_SELECT_LOCA" class="BUTTON_UNDER"
+                           type="submit" SUBMIT value=" SELECT NEW LOCATION " />
+                </a>
+            </div>
+            <div id="BUTTON_Y">                                                         <!-- ปุ่ม YESTERDAY -->
+                <a href="../YESTERDAY/yesterday.html">
+                    <input id="BUTTON_YESTERDAY" class="BUTTON_UNDER"
+                           type="submit" SUBMIT value=" YESTERDAY " />
+                </a>
+            </div>
+        </div>
+
+<!--        <div id="test"><p>here</p></div>-->
+
+    <script src="today.js"></script>
+    </body>
+</html>

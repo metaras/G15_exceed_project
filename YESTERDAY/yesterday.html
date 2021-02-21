@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>yesterday</title>
+        <link rel="stylesheet" href="yesterday.css">
+        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+    </head>
+
+    <body>
+        <h1 id="TEXT"> LOCATION <p style="display:inline;" id="location_name"></p> </h1>                      <!-- ข้อความ LOCATION -->
+        <p id="UNDER_TITLE"> < YESTERDAY > </p>                     <!-- ข้อความ < YESTERDAY > -->
+
+        <!-- ----------------------------------------------------------------------------------------------------------- Pie Chart -->
+        <div class="graph">
+            <div id="chartContainer" style="height: 370px; width: 700px;"></div>
+
+            <!-- <div id="barchart"style="width: 1000px; height: 350px;"></div> -->
+            <div id="piechart" style="width: 700px; height: 450px;"></div>
+        </div>
+
+<!-- ----------------------------------------------------------------------------------------------------------------- -->
+
+        <div class="BUTTON">                                        <!-- ปุ่ม SELECT_LOCA , TODAY -->
+            <div id="BUTTON_S">                                     <!-- ปุ่ม SELECT_LOCA -->
+                <a href="../INDEX/index.html">
+                    <input id="BUTTON_SELECT_LOCA" class="BUTTON_UNDER"
+                           type="submit" SUBMIT value=" SELECT NEW LOCATION " />
+                </a>
+            </div>
+            <div id="BUTTON_T">                                     <!-- ปุ่ม TODAY -->
+                <a href="../TODAY/today.html">
+                    <input id="BUTTON_YESTERDAY" class="BUTTON_UNDER"
+                           type="submit" SUBMIT value="   TODAY   " />
+                </a>
+            </div>
+        </div>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="yesterday.js"></script>
+    </body>
+</html>

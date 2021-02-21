@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum Gothic Coding');
+@import url('https://fonts.googleapis.com/css2?family=Julius Sans One');
+@import url('https://fonts.googleapis.com/css2?family=Palanquin');
+* {                                             /* font */
+    font-family: Nanum Gothic Coding;
+}
+
+body {                                          /* สีพื้นหลัง */
+    background-color: #e9d5ae;
+}
+
+#TEXT {                                         /* ข้อความ "LOCATION" */
+    text-align: center;
+    font-size: 300%;
+}
+
+#UNDER_TITLE {                                  /* ข้อความ "< TODAY >" */
+    text-align: center;
+    font-size: 200%;
+}
+
+
+.G_AND_B {                                      /* จัดให้แนวนอน */
+    display: flex;
+    flex-direction: row;
+}
+
+
+.B {                                            /* จัดให้แนวตั้ง */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+#chartContainer {                               /* ตำแหน่งกราฟ */
+    margin-left: 150px;
+    margin-top: 50px;
+}
+
+
+.REAL_TIME_BLOCKS {                             /* ตำแหน่ง blocks */
+    background-color: #ffffff;
+    padding: 10px;
+    margin: 50px 0px 0px 100px;
+    font-size: 200%;
+    text-align: center;
+    border-radius: 5px;
+    border: 3px solid #000000;
+}
+
+
+.COLOR_HINT {                                   /* เรียง 3 สีให้เป็นแนวนอน */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-left: 100px;
+}
+
+.CIRCLE {                                       /* สร้างวงกลม */
+    height: 25px;
+    width: 25px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+}
+                                                /* สีวงกลม */
+#C1 {
+    background-color: #51e972;
+}
+#C2 {
+    background-color: #f68b39;
+}
+#C3 {
+    background-color: #f62f2f;
+}
+
+.COLOR_AND_TEXT{                                /* สี + text ขยายความ ให้เเป็นแนวนอน */
+    display: flex;
+    flex-direction: row;
+    font-size: 150%;
+}
+
+
+.BUTTON {                                       /* ทำปุ่ม SELECT_LOCA , YESTERDAY ให้เป็นแนวนอน */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+#BUTTON_S {                                     /* ปุ่ม SELECT_LOCA */
+    margin-top: 66px;
+    margin-right: 350px;
+}
+#BUTTON_Y {                                     /* ปุ่ม YESTERDAY */
+    margin-top: 66px;
+    margin-left: 350px;
+}
+.BUTTON_UNDER {                                /* ขนาด + สีปุ่ม */
+    background-color: #dbdada;
+    font-size: 150%;
+    border-radius: 5px;
+}
+.BUTTON_UNDER:hover {                          /* สีปุ่มขณะเม้าส์ชี้ */
+    background-color: #e3ab9b;
+    color: #ffffff;
+}
