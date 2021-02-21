@@ -14,4 +14,4 @@ This is our project in the Exceed camp 17
 | :-------------------------: | :-----------------------------------------: |
 | Pachara Puwaprapachart      |  [Pachara](https://github.com/Wani29I)      |
 | Nik Kunraho  Struyf         |  [Nik](https://github.com/nik120944)        |
-| Metaras Charoenseang        |  [metaras](https://github.com/metaras)      |
+| Metaras Charoenseang        |  [Metaras](https://github.com/metaras)      |
