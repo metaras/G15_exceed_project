@@ -17,3 +17,5 @@ This is our project in the Exceed camp 17
 | Metaras Charoenseang        |  [Metaras](https://github.com/metaras)      |
 | Natthakit Netsiwawichian    |  [Natthakit](https://github.com/inwten)     |
 | Potchara Jomjailek          |  [Potchara](https://github.com/VonKiar)     |
+| Nopparuj Sirirojanakorn     |  [Nopparuj](https://github.com/hazelnope)   |
+| Wasawat Koetmongkhon        |  [Wasawat](https://github.com/Koetmongkhon) |
