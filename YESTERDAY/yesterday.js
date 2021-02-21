@@ -3,17 +3,6 @@ let ln = document.getElementById("location_name");
 var location_name = sessionStorage.getItem("location_name");
 ln.innerText = location_name;
 
-function getBarData() {
-  fetch("http://158.108.182.17:2255/get_time_A_yesterday")
-    .then((response) => response.json())
-    .then((data) => {
-      for (var i = 10; i <= 21; i++) {
-        in_yes = data[i].in  //จำนวนคนเข้า
-        out_yes = data[i].out  // จำนวนคนออก
-      }
-    });
-}
-
 window.onload = function () {
   google.charts.load('current', { 'packages': ['corechart'] });
 
@@ -22,21 +11,31 @@ window.onload = function () {
   var box1 = new Array();
   var box2 = new Array();
   var check = 0
+  function makeNewNode(text) {
+    newNode = document.createElement("p");
+    newNode.innerText = text;
+    return newNode;
+  }
+  test_bar = document.getElementById("test-bar")
   fetch("http://158.108.182.17:2255/get_time_A_yesterday", {
     method: "GET",
     headers: { "Content-Type": "application/json" },
   })
     .then((response) => response.json())
-    .then((data) => {
-      for (var i = 10; i <= 21; i++) { //*********************** cannot read data ************************* */
-        in_yes = data[i].in  //จำนวนคนเข้า
-        out_yes = data[i].out  // จำนวนคนออก
-        // box1.push(in_yes)
-        // box2.push(out_yes)
+    .then((data) => {//*********************** cannot read data ************************* */
+        in_1 = data[10].in + data[11].in + data[12].in + data[13].in //จำนวนคนเข้า
+        out_1 = data[10].out + data[11].out + data[12].out + data[13].out   // จำนวนคนออก
+        in_2 = data[13].in + data[14].in + data[15].in + data[16].in //จำนวนคนเข้า
+        out_2 = data[13].out + data[14].out + data[15].out + data[16].out   
+        in_3 = data[16].in + data[17].in + data[18].in + data[19].in //จำนวนคนเข้า
+        out_3 = data[16].out + data[17].out + data[18].out + data[19].out   
+        in_4 = data[19].in + data[20].in + data[21].in
+        out_4 = data[19].out + data[20].out + data[21].out
+        barchart(in_1, in_2, in_3, in_4, out_1, out_2, out_3, out_4)
         check = in_yes
-      }
     });
-
+function barchart(in_1, in_2, in_3, in_4, out_1, out_2, out_3, out_4)
+{
     var chart = new CanvasJS.Chart("chartContainer", {
       animationEnabled: true,
       title:{
@@ -62,10 +61,10 @@ window.onload = function () {
         legendText: "Entry",
         showInLegend: true, 
         dataPoints:[
-          { label: "10:00-13:00", y: 50 },//********************* Enter number of entering people *************************** */
-          { label: "13:00-16:00", y: check },
-          { label: "16:00-19:00", y: 25 },
-          { label: "19:00-22:00", y: 20 }
+          { label: "10:00-13:00", y: in_1 },//********************* Enter number of entering people *************************** */
+          { label: "13:00-16:00", y: in_2 },
+          { label: "16:00-19:00", y: in_3 },
+          { label: "19:00-21:00", y: in_4 }
         ]
       },
       {
@@ -75,10 +74,10 @@ window.onload = function () {
         axisYType: "secondary",
         showInLegend: true,
         dataPoints:[
-          { label: "10:00-13:00", y: 10 },//********************* enter number of exiting people *************************** */
-          { label: "13:00-16:00", y: 12 },
-          { label: "16:00-19:00", y: 31 },
-          { label: "19:00-22:00", y: 40 }
+          { label: "10:00-13:00", y: out_1 },//********************* enter number of exiting people *************************** */
+          { label: "13:00-16:00", y: out_2 },
+          { label: "16:00-19:00", y: out_3 },
+          { label: "19:00-21:00", y: out_4 }
         ]
       }]
     });
@@ -92,17 +91,15 @@ window.onload = function () {
       }
       chart.render();
     }
+  }
 // ---------------------------------- Pie Chart.
 
   google.charts.setOnLoadCallback(drawChart2);
-  fetch("http://158.108.182.17:2255/get_temp_A", {
-    method: "GET",
-    headers: { "Content-Type": "application/json" },
-  })
+  fetch("http://158.108.182.17:2255/get_temp_A")
     .then((response) => response.json())
     .then((data) => {
-      pass = data.pass
-      not_pass = data.not_pass
+      pass = data.pass_yesterday
+      not_pass = data.not_pass_yesterday
     });
 
   function drawChart2() {
