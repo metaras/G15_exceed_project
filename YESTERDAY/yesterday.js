@@ -3,24 +3,21 @@ let ln = document.getElementById("location_name");
 var location_name = sessionStorage.getItem("location_name");
 ln.innerText = location_name;
 
+if (location_name==="A"){
+  url_bar = "http://158.108.182.17:2255/get_time_A_yesterday"
+  url_pie = "http://158.108.182.17:2255/get_temp_A"
+}
+else{
+  url_bar = "http://158.108.182.17:2255/get_time_B_yesterday"
+  url_pie = "http://158.108.182.17:2255/get_temp_B"
+}
+
 window.onload = function () {
   google.charts.load('current', { 'packages': ['corechart'] });
 
 // ---------------------------------- Bar Chart.
 
-  var box1 = new Array();
-  var box2 = new Array();
-  var check = 0
-  function makeNewNode(text) {
-    newNode = document.createElement("p");
-    newNode.innerText = text;
-    return newNode;
-  }
-  test_bar = document.getElementById("test-bar")
-  fetch("http://158.108.182.17:2255/get_time_A_yesterday", {
-    method: "GET",
-    headers: { "Content-Type": "application/json" },
-  })
+  fetch(url_bar)
     .then((response) => response.json())
     .then((data) => {//*********************** cannot read data ************************* */
         in_1 = data[10].in + data[11].in + data[12].in + data[13].in //จำนวนคนเข้า
@@ -95,7 +92,7 @@ function barchart(in_1, in_2, in_3, in_4, out_1, out_2, out_3, out_4)
 // ---------------------------------- Pie Chart.
 
   google.charts.setOnLoadCallback(drawChart2);
-  fetch("http://158.108.182.17:2255/get_temp_A")
+  fetch(url_pie)
     .then((response) => response.json())
     .then((data) => {
       pass = data.pass_yesterday
